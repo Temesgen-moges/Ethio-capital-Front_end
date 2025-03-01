@@ -1,0 +1,9 @@
+export const main = "https://ethio-capital-back-end-2.onrender.com/api/v1";
+export const LOGIN = `${main}/login`;
+export const SIGN_UP = `${main}/signup`;
+export const SUBMIT_IDEA = `${main}/submit-idea`;
+export const GET_IDEAS = `${main}/get-ideas`;
+export const GET_IDEA_BY_ID = `${main}/get-idea/:id`;
+export const GET_IDEAS_BY_USER = `${main}/get-ideas-by-user`;
+export const UPDATE_IDEA = `${main}/update-idea/:id`;
+export const DELETE = `${main}/delete-idea/:id`;

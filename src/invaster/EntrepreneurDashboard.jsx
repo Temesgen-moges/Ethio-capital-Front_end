@@ -14,7 +14,12 @@ import {
 } from "../redux/BussinessIdeaSlice";
 import BlogsPage from "../All/BlogPage";
 import NavigationBar from "./NavigationBar";
-
+// import DELETE from "../APIRoutes/routes";
+// export const GET_IDEAS = `${main}/get-ideas`;
+// export const GET_IDEA_BY_ID = `${main}/get-idea/:id`;
+// export const GET_IDEAS_BY_USER = `${main}/get-ideas-by-user`;
+// export const UPDATE_IDEA = `${main}/update-idea/:id`;
+// export const DELETE = `${main}/delete-idea/:id`;
 const categories = [
   "All",
   "Agriculture",
@@ -103,10 +108,13 @@ function EntrepreneurDashboard() {
 
   // Delete handler
   const handleDelete = async () => {
+    console.log("Found idea:", ideaToDelete);
     if (!ideaToDelete) return;
 
     try {
-      await axios.delete(`/delete-idea/${ideaToDelete}`);
+      await axios.delete(
+        `/https://ethio-capital-back-end-2.onrender.com/api/v1/delete-idea/${ideaToDelete}`
+      );
       dispatch(fetchBussinessIdea());
       setIdeaToDelete(null);
     } catch (error) {

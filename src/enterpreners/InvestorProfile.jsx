@@ -20,7 +20,6 @@
 //   { year: '2024', amount: 7.2 },
 // ];
 
-
 // const InvestorProfile = () => {
 //   const [selectedPortfolio, setSelectedPortfolio] = useState(null);
 //   const navigate = useNavigate();
@@ -83,8 +82,6 @@
 //   const redirectToInvestorProfileForm = () => {
 //     navigate('/Investor-profile-form');
 //   };
-
-
 
 //   return (
 //     <div className="min-h-screen bg-gray-50">
@@ -326,33 +323,54 @@
 
 // export default InvestorProfile;
 
-
-import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
 import {
-  Building2, Briefcase, Trophy, DollarSign, Target, History,
-  Linkedin, Twitter, Globe, Mail, Instagram, ExternalLink,
-  X, ArrowLeft,
-  ArrowRight
-} from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserProfile } from '../redux/UserSlice';
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Building2,
+  Briefcase,
+  Trophy,
+  DollarSign,
+  Target,
+  History,
+  Linkedin,
+  Twitter,
+  Globe,
+  Mail,
+  Instagram,
+  ExternalLink,
+  X,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUserProfile } from "../redux/UserSlice";
+import BoardDashboard from "../bord/BoardDashboard";
 
 const mockIncomeData = [
-  { year: '2019', amount: 2.5 },
-  { year: '2020', amount: 3.8 },
-  { year: '2021', amount: 4.2 },
-  { year: '2022', amount: 5.1 },
-  { year: '2023', amount: 6.4 },
-  { year: '2024', amount: 7.2 },
+  { year: "2019", amount: 2.5 },
+  { year: "2020", amount: 3.8 },
+  { year: "2021", amount: 4.2 },
+  { year: "2022", amount: 5.1 },
+  { year: "2023", amount: 6.4 },
+  { year: "2024", amount: 7.2 },
 ];
 
 const InvestorProfile = () => {
   const [selectedPortfolio, setSelectedPortfolio] = useState(null);
   const navigate = useNavigate();
-  const { userData, error, loading, status } = useSelector((state) => state.userData);
+  const { userData, error, loading, status } = useSelector(
+    (state) => state.userData
+  );
   const dispatch = useDispatch();
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [selectedIdea, setSelectedIdea] = useState(null);
@@ -362,22 +380,22 @@ const InvestorProfile = () => {
       title: "Green Energy Solution",
       description: "Renewable energy technology for sustainable future",
       likes: 156,
-      isLiked: true
+      isLiked: true,
     },
     {
       id: 2,
       title: "Healthcare AI",
       description: "AI-powered diagnostic tools for healthcare",
       likes: 89,
-      isLiked: true
+      isLiked: true,
     },
     {
       id: 3,
       title: "Smart Agriculture",
       description: "IoT solutions for precision farming",
       likes: 234,
-      isLiked: true
-    }
+      isLiked: true,
+    },
   ]);
   const [showLikedIdeas, setShowLikedIdeas] = useState(false);
 
@@ -390,11 +408,9 @@ const InvestorProfile = () => {
   }, [userData]);
 
   const toggleLike = (ideaId) => {
-    setLikedIdeas(ideas => 
-      ideas.map(idea => 
-        idea.id === ideaId 
-          ? { ...idea, isLiked: !idea.isLiked }
-          : idea
+    setLikedIdeas((ideas) =>
+      ideas.map((idea) =>
+        idea.id === ideaId ? { ...idea, isLiked: !idea.isLiked } : idea
       )
     );
   };
@@ -407,42 +423,49 @@ const InvestorProfile = () => {
     experience: "15+ years",
     successfulExits: 12,
     portfolioCompanies: 25,
-    about: "Serial entrepreneur turned investor with a passion for transformative technologies and sustainable solutions. Focus on early-stage startups with high growth potential.",
+    about:
+      "Serial entrepreneur turned investor with a passion for transformative technologies and sustainable solutions. Focus on early-stage startups with high growth potential.",
     socialLinks: {
       linkedin: "linkedin.com/johnmaxwell",
       twitter: "twitter.com/johnmaxwell",
       website: "johnmaxwell.com",
       instagram: "instagram.com/johnmaxwell",
-      email: "john@maxwell.com"
+      email: "john@maxwell.com",
     },
     previousInvestments: [
       {
         name: "TechCorp",
         result: "3x Return",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%234A90E2'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3ETechCorp%3C/text%3E%3C/svg%3E",
-        description: "A leading technology company specializing in AI solutions for enterprise customers."
+        image:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%234A90E2'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3ETechCorp%3C/text%3E%3C/svg%3E",
+        description:
+          "A leading technology company specializing in AI solutions for enterprise customers.",
       },
       {
         name: "HealthInnovate",
         result: "5x Return",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%2350E3C2'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EHealthInnovate%3C/text%3E%3C/svg%3E",
-        description: "Healthcare technology platform revolutionizing patient care management."
+        image:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%2350E3C2'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EHealthInnovate%3C/text%3E%3C/svg%3E",
+        description:
+          "Healthcare technology platform revolutionizing patient care management.",
       },
       {
         name: "GreenEnergy",
         result: "2.5x Return",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%234CAF50'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EGreenEnergy%3C/text%3E%3C/svg%3E",
-        description: "Renewable energy solutions provider focusing on solar and wind power."
+        image:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%234CAF50'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EGreenEnergy%3C/text%3E%3C/svg%3E",
+        description:
+          "Renewable energy solutions provider focusing on solar and wind power.",
       },
     ],
   };
 
   const redirectToInvestorDashboard = () => {
-    navigate('/Entrepreneur-dashboard');
+    navigate("/Entrepreneur-dashboard");
   };
 
   const redirectToInvestorProfileForm = () => {
-    navigate('/Investor-profile-form');
+    navigate("/Investor-profile-form");
   };
   return (
     <div className="min-h-screen bg-gray-50">
@@ -456,6 +479,14 @@ const InvestorProfile = () => {
           </button>
           <h1 className="text-xl font-bold">Profile</h1>
         </div>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => navigate("/BoardDashboard")}
+          className="bg-blue-600 hover:bg-blue-700 text-white mr-56 font-bold py-2 px-4 rounded absolute top-4 right-4 z-10"
+        >
+          Board members
+        </motion.button>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -481,28 +512,49 @@ const InvestorProfile = () => {
             >
               <div className="h-24 w-24 bg-white rounded-full flex items-center justify-center">
                 <span className="text-3xl font-bold text-blue-600">
-                  <img src={userData.photo} alt='Profile' className="w-full h-full rounded-full object-cover" />
+                  <img
+                    src={userData.photo}
+                    alt="Profile"
+                    className="w-full h-full rounded-full object-cover"
+                  />
                 </span>
               </div>
               <div className="text-white text-center md:text-left">
-                <h1 className="text-3xl font-bold">{userData?.user?.fullName}</h1>
+                <h1 className="text-3xl font-bold">
+                  {userData?.user?.fullName}
+                </h1>
                 <p className="text-blue-100">{userData.title}</p>
 
                 {/* Social Media Links */}
                 <div className="flex gap-4 mt-4 justify-center md:justify-start">
-                  <a href={userData?.socialLinks?.linkedin} className="text-white hover:text-blue-200 transition-colors">
+                  <a
+                    href={userData?.socialLinks?.linkedin}
+                    className="text-white hover:text-blue-200 transition-colors"
+                  >
                     <Linkedin className="w-5 h-5" />
                   </a>
-                  <a href={userData?.socialLinks?.twitter} className="text-white hover:text-blue-200 transition-colors">
+                  <a
+                    href={userData?.socialLinks?.twitter}
+                    className="text-white hover:text-blue-200 transition-colors"
+                  >
                     <Twitter className="w-5 h-5" />
                   </a>
-                  <a href={userData?.socialLinks?.website} className="text-white hover:text-blue-200 transition-colors">
+                  <a
+                    href={userData?.socialLinks?.website}
+                    className="text-white hover:text-blue-200 transition-colors"
+                  >
                     <Globe className="w-5 h-5" />
                   </a>
-                  <a href={`mailto:${userData?.socialLinks?.email}`} className="text-white hover:text-blue-200 transition-colors">
+                  <a
+                    href={`mailto:${userData?.socialLinks?.email}`}
+                    className="text-white hover:text-blue-200 transition-colors"
+                  >
                     <Mail className="w-5 h-5" />
                   </a>
-                  <a href={userData?.socialLinks?.instagram} className="text-white hover:text-blue-200 transition-colors">
+                  <a
+                    href={userData?.socialLinks?.instagram}
+                    className="text-white hover:text-blue-200 transition-colors"
+                  >
                     <Instagram className="w-5 h-5" />
                   </a>
                 </div>
@@ -523,7 +575,7 @@ const InvestorProfile = () => {
                 onClick={() => setShowLikedIdeas(!showLikedIdeas)}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
               >
-                {showLikedIdeas ? 'Hide Ideas' : 'Show Ideas'}
+                {showLikedIdeas ? "Hide Ideas" : "Show Ideas"}
               </button>
             </div>
 
@@ -531,7 +583,7 @@ const InvestorProfile = () => {
               {showLikedIdeas && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
+                  animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
@@ -543,16 +595,20 @@ const InvestorProfile = () => {
                       className="bg-white rounded-xl shadow-md overflow-hidden"
                     >
                       <div className="p-6">
-                        <h3 className="text-lg font-semibold mb-2">{idea.title}</h3>
+                        <h3 className="text-lg font-semibold mb-2">
+                          {idea.title}
+                        </h3>
                         <p className="text-gray-600 mb-4">{idea.description}</p>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-500">{idea.likes} likes</span>
+                          <span className="text-sm text-gray-500">
+                            {idea.likes} likes
+                          </span>
                           <button
                             onClick={() => toggleLike(idea.id)}
                             className={`p-2 rounded-full ${
-                              idea.isLiked 
-                                ? 'text-red-500 hover:text-red-600' 
-                                : 'text-gray-400 hover:text-gray-500'
+                              idea.isLiked
+                                ? "text-red-500 hover:text-red-600"
+                                : "text-gray-400 hover:text-gray-500"
                             }`}
                           >
                             <svg
@@ -643,7 +699,9 @@ const InvestorProfile = () => {
                 transition={{ delay: 0.4 }}
                 className="bg-gray-50 p-6 rounded-xl"
               >
-                <h2 className="text-xl font-semibold mb-4">Investment Performance</h2>
+                <h2 className="text-xl font-semibold mb-4">
+                  Investment Performance
+                </h2>
                 <div className="h-64">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={mockIncomeData}>
@@ -656,7 +714,7 @@ const InvestorProfile = () => {
                         dataKey="amount"
                         stroke="#2563eb"
                         strokeWidth={2}
-                        dot={{ fill: '#2563eb' }}
+                        dot={{ fill: "#2563eb" }}
                       />
                     </LineChart>
                   </ResponsiveContainer>
