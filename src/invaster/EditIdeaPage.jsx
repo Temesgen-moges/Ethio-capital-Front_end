@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import setupAxios from "../middleware/MiddleWare";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "../redux/UserSlice";
+import { toast } from "react-hot-toast";
+import { toustOptionError } from "./SubmitideaScreen";
 
 const EditIdeaPage = () => {
   const { id } = useParams();
@@ -38,6 +40,16 @@ const EditIdeaPage = () => {
     dispatch(fetchUserData());
     fetchIdeaData();
   }, [dispatch]);
+
+  const toustOptions = {
+    style: {
+      background: "#4caf50", // Green background
+      color: "#fff", // White text
+      fontSize: "16px",
+      padding: "10px",
+      borderRadius: "8px",
+    },
+  };
 
   const fetchIdeaData = async () => {
     try {
@@ -104,9 +116,11 @@ const EditIdeaPage = () => {
         `https://ethio-capital-back-end-2.onrender.com/api/v1/update-idea/${id}`,
         formData
       );
-      navigate("/dashboard");
+      toast.success("Updated successfully", toustOptions);
+      navigate("/entrepreneur-dahsboard");
     } catch (error) {
       console.error("Error updating idea:", error);
+      toast.error("Error updating idea", toustOptionError);
     }
   };
 

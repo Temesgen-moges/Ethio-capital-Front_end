@@ -1,24 +1,20 @@
-import React, { useEffect } from "react";
-
+import React from "react";
+import { Toaster } from "react-hot-toast";
 import AppRouter from "./AppRouter";
-import Navigation from "./welcome/Navigagation";
-
 
 const App = () => {
-
-
-    return (
-        <>
-            <AppRouter />
-      
-        </>
-    )
-    {/* <InvestorDashboard/> */ }
+  return (
+    <>
+      <Toaster position="top-center" reverseOrder={false} />
+      <AppRouter />
+    </>
+  );
+  {
+    /* <InvestorDashboard/> */
+  }
 };
 
 export default App;
-
-
 
 // import React from "react";
 // import InvestorDashboard from "./enterpreners/InvestorDashboard";

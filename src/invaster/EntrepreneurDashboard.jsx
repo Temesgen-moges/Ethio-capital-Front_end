@@ -14,6 +14,9 @@ import {
 } from "../redux/BussinessIdeaSlice";
 import BlogsPage from "../All/BlogPage";
 import NavigationBar from "./NavigationBar";
+import { toast } from "react-hot-toast";
+import { toustOptionError } from "./SubmitideaScreen";
+
 // import DELETE from "../APIRoutes/routes";
 // export const GET_IDEAS = `${main}/get-ideas`;
 // export const GET_IDEA_BY_ID = `${main}/get-idea/:id`;
@@ -94,6 +97,16 @@ function EntrepreneurDashboard() {
     dispatch(clearBussinessIdea());
     navigate("/login");
   };
+  const toustOptions = {
+    style: {
+      background: "#f44336", // Red background for delete action
+      color: "#fff",
+      fontSize: "16px",
+      padding: "10px",
+      borderRadius: "8px",
+    },
+    icon: "🗑️",
+  };
 
   const handleComplaintSubmit = async (e) => {
     e.preventDefault();
@@ -113,13 +126,15 @@ function EntrepreneurDashboard() {
 
     try {
       await axios.delete(
-        `/https://ethio-capital-back-end-2.onrender.com/api/v1/delete-idea/${ideaToDelete}`
+        `https://ethio-capital-back-end-2.onrender.com/api/v1/delete-idea/${ideaToDelete}`
       );
       dispatch(fetchBussinessIdea());
       setIdeaToDelete(null);
+      toast.success("Idea deleted successfully!", toustOptions);
     } catch (error) {
       console.error("Error deleting idea:", error);
       setIdeaToDelete(null);
+      toast.error("Failed to delete idea. Please try again.", toustOptionError);
     }
   };
 
