@@ -7,3 +7,4 @@ export const GET_IDEA_BY_ID = `${main}/get-idea/:id`;
 export const GET_IDEAS_BY_USER = `${main}/get-ideas-by-user`;
 export const UPDATE_IDEA = `${main}/update-idea/:id`;
 export const DELETE = `${main}/delete-idea/:id`;
+export const BOARD = `${main}/generate-report`;
