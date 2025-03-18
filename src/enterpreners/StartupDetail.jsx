@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,6 +14,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "../redux/UserSlice";
 import { use } from "react";
 import { set } from "react-hook-form";
+=======
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { clearBussinessIdea, setBussinessIdea, setSelectedBusinessIdea, fetchBusinessIdeaById } from '../redux/BussinessIdeaSlice';
+import Message from '../component/chat/Messsage';
+import setupAxios from '../middleware/MiddleWare';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserData } from '../redux/UserSlice';
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
 
 const StartupDetail = () => {
   const navigate = useNavigate();
@@ -31,6 +42,7 @@ const StartupDetail = () => {
   }, []);
 
   const dispatch = useDispatch();
+<<<<<<< HEAD
   // Change default to an empty object (if it's an object) or null (if it's possibly null)
   const selectedBusinessIdea = useSelector(
     (state) => state.businessIdea.selectedBusinessIdea
@@ -38,6 +50,10 @@ const StartupDetail = () => {
   const bussinessIdea = useSelector(
     (state) => state.businessIdea.BussinessIdea
   );
+=======
+  const selectedBusinessIdea = useSelector((state) => state.businessIdea.selectedBusinessIdea);
+  const bussinessIdea = useSelector((state) => state.businessIdea.BussinessIdea);
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
   const bussinessIdeaArray = Array.isArray(bussinessIdea)
     ? bussinessIdea
     : Object.values(bussinessIdea || {});
@@ -45,8 +61,17 @@ const StartupDetail = () => {
   const userData = useSelector((state) => state.userData);
 
   useEffect(() => {
+<<<<<<< HEAD
     dispatch(fetchUserData()); // Ensure this function is being called
   }, [dispatch]);
+=======
+    dispatch(fetchUserData());
+  }, [dispatch]);
+
+  const handleInvestNow = () => {
+    navigate('/PaymentForm');
+  };
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
 
   const handleInterestSubmit = () => {
     setIsInterested(true);
@@ -56,8 +81,10 @@ const StartupDetail = () => {
   const handleSaveIdea = () => {
     setIsSaved(!isSaved);
   };
+
   useEffect(() => {
     const selectedIdea = bussinessIdeaArray.find((idea) => idea._id === id);
+<<<<<<< HEAD
     // console.log("selectedIdea:", selectedIdea);
     // If there is no selected idea or if the list has just been fetched, filter based on ID
     if (!selectedBusinessIdea || bussinessIdeaArray?.length > 0) {
@@ -96,6 +123,26 @@ const StartupDetail = () => {
       setShowChat(!showChat);
     } catch (error) {
       console.error("Error starting conversation:", error);
+=======
+    if (selectedIdea) {
+      dispatch(setSelectedBusinessIdea(selectedIdea));
+      setIdeaDetails(selectedIdea);
+    }
+  }, [dispatch, id, bussinessIdea, selectedBusinessIdea]);
+
+  const startConversation = async (e, otherUserId, currentUserId, ideaId) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/conversation-fetch', {
+        participants: [currentUserId, otherUserId],
+        ideaId
+      });
+      const conversationId = response.data._id;
+      setConversationId(conversationId);
+      setShowChat(!showChat);
+    } catch (error) {
+      console.error('Error starting conversation:', error);
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
     }
   };
 
@@ -105,23 +152,6 @@ const StartupDetail = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Interest Counter Bar */}
-      <div className="bg-blue-600 text-white py-9">
-        {/* <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <div>
-              <span className="text-2xl font-bold">{interestCount}</span>
-              <span className="ml-2">people interested</span>
-            </div>
-          </div>
-          {!isInterested && (
-            <button onClick={handleInterestSubmit} className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold hover:bg-blue-50 transition-colors">
-              Show Interest
-            </button>
-          )}
-        </div> */}
-      </div>
-
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
@@ -179,12 +209,16 @@ const StartupDetail = () => {
           </div>
           {/* Chat Body */}
           {showChat && (
+<<<<<<< HEAD
             <Message
               conversationId={conversationId}
               userId={userData.userData._id}
               ideaId={ideaDetails._id}
               otherUserId={ideaDetails.user._id} // Pass the investor's ID here
             />
+=======
+            <Message conversationId={conversationId} userId={userData.userData._id} ideaId={ideaDetails._id} />
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
           )}
         </div>
       </div>
@@ -285,12 +319,17 @@ const StartupDetail = () => {
                       strokeWidth="10"
                       strokeLinecap="round"
                       strokeDasharray={`${calculateProgress(
+<<<<<<< HEAD
                         ideaDetails?.fundingRaised
                           ? ideaDetails.fundingRaised.replace(/\D/g, "")
                           : "0",
                         ideaDetails?.fundingNeeded
                           ? ideaDetails.fundingNeeded.replace(/\D/g, "")
                           : "1"
+=======
+                        ideaDetails?.fundingRaised ? ideaDetails.fundingRaised.replace(/\D/g, '') : '0',
+                        ideaDetails?.fundingNeeded ? ideaDetails.fundingNeeded.replace(/\D/g, '') : '1'
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
                       )} 283`}
                       transform="rotate(-90 50 50)"
                     />
@@ -392,6 +431,7 @@ const StartupDetail = () => {
             <section className="bg-white p-6 rounded-lg shadow">
               <h2 className="text-2xl font-bold mb-4">Documents</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<<<<<<< HEAD
                 {ideaDetails?.documents &&
                 Object.keys(ideaDetails.documents).length > 0 ? (
                   Object.entries(ideaDetails.documents).map(
@@ -424,6 +464,23 @@ const StartupDetail = () => {
                               {docValue ? "Available" : "Not Uploaded"}
                             </p>
                           </div>
+=======
+                {ideaDetails?.documents && Object.keys(ideaDetails.documents).length > 0 ? (
+                  Object.entries(ideaDetails.documents).map(([docName, docValue], index) => (
+                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-4">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                          />
+                        </svg>
+                        <div>
+                          <h3 className="font-semibold">{docName.replace(/([A-Z])/g, ' $1').trim()}</h3>
+                          <p className="text-sm text-gray-500">{docValue ? "Available" : "Not Uploaded"}</p>
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
                         </div>
                         {/* View Link (Only show if document exists) */}
                         {docValue && (
@@ -437,8 +494,23 @@ const StartupDetail = () => {
                           </a>
                         )}
                       </div>
+<<<<<<< HEAD
                     )
                   )
+=======
+                      {docValue && (
+                        <a
+                          href={`/documents/${docValue}`}
+                          className="text-blue-600 hover:underline"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View
+                        </a>
+                      )}
+                    </div>
+                  ))
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
                 ) : (
                   <p className="text-gray-400">No documents available</p>
                 )}
@@ -448,6 +520,35 @@ const StartupDetail = () => {
 
           {/* Right Column - Sidebar */}
           <div className="space-y-8">
+            {/* Invest Now Button */}
+            <div className="bg-white p-6 rounded-lg shadow relative overflow-hidden group">
+              <button
+                onClick={handleInvestNow}
+                className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-lg
+                         transform transition-all duration-300 hover:scale-105 hover:from-purple-700 hover:to-blue-700
+                         active:scale-95"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <svg
+                    className="w-5 h-5 animate-bounce"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                    />
+                  </svg>
+                  INVEST NOW
+                </span>
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+              </button>
+              <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine" />
+            </div>
+
             {/* Save Idea */}
             <div className="bg-white p-6 rounded-lg shadow">
               <button
@@ -502,4 +603,9 @@ const StartupDetail = () => {
     </div>
   );
 };
+<<<<<<< HEAD
 export default StartupDetail;
+=======
+
+export default StartupDetail;
+>>>>>>> a944d251ce913091641e22fdbef490862c228348

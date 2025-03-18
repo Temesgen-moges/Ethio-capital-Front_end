@@ -16,8 +16,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { FilePlus } from "lucide-react";
 import Documents from "./Documents";
+<<<<<<< HEAD
 import { ChevronDown, ChevronUp } from "lucide-react";
 import ReportGenerator from "./ReportGenerator";
+=======
+import { ChevronDown, ChevronUp } from 'lucide-react'; 
+import NavigationBar from '../invaster/NavigationBar';
+
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
 
 const BoardDashboard = () => {
   const [activeTab, setActiveTab] = useState("discussion");
@@ -52,6 +58,7 @@ const BoardDashboard = () => {
   const [currentVoteType, setCurrentVoteType] = useState(null);
 
   const boardMembers = [
+<<<<<<< HEAD
     {
       id: 1,
       name: "John Smith",
@@ -63,6 +70,19 @@ const BoardDashboard = () => {
       contact: "+251 911 234 567",
       accountDetails: "1234-5678-9012-3456",
       bankName: "Commercial Bank of Ethiopia",
+=======
+    { 
+      id: 1, 
+      name: 'Temesgen Moges', 
+      role: 'Chairman (Entrepreneur)', 
+      shares: '30%', 
+      status: 'online',
+      image: '👨‍💼',
+      bio: 'Tech entrepreneur with 10 years experience',
+      contact: '+251 911 234 567',
+      accountDetails: '1234-5678-9012-3456',
+      bankName: 'Commercial Bank of Ethiopia'
+>>>>>>> a944d251ce913091641e22fdbef490862c228348
     },
     {
       id: 2,
